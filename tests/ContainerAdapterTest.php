@@ -3,7 +3,6 @@
 namespace Dzibma\Slim\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Nette\DI\Container;
 use Nette\DI\Compiler;
 use Psr\Container\ContainerInterface;
 use Dzibma\Slim\ContainerAdapter;

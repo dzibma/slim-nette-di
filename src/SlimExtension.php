@@ -3,9 +3,7 @@
 namespace Dzibma\Slim;
 
 use Nette\DI\CompilerExtension;
-use Nette\DI\Extensions\InjectExtension;
 use Nette\DI\Statement;
-use Nette\PhpGenerator\PhpLiteral;
 
 class SlimExtension extends CompilerExtension
 {
