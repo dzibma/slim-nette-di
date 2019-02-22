@@ -35,8 +35,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasSettings(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.settings'));
-        return $container->getService('slim.settings');
+        $this->assertTrue($container->hasService('settings'));
+        return $container->getService('settings');
     }
 
     /**
@@ -60,8 +60,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasEnvironment(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.environment'));
-        return $container->getService('slim.environment');
+        $this->assertTrue($container->hasService('environment'));
+        return $container->getService('environment');
     }
 
     /**
@@ -77,8 +77,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasRequest(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.request'));
-        return $container->getService('slim.request');
+        $this->assertTrue($container->hasService('request'));
+        return $container->getService('request');
     }
 
     /**
@@ -94,8 +94,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasResponse(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.response'));
-        return $container->getService('slim.response');
+        $this->assertTrue($container->hasService('response'));
+        return $container->getService('response');
     }
 
     /**
@@ -113,8 +113,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasRouter(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.router'));
-        return $container->getService('slim.router');
+        $this->assertTrue($container->hasService('router'));
+        return $container->getService('router');
     }
 
     /**
@@ -130,7 +130,7 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasFoundHandler(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.foundHandler'));
+        $this->assertTrue($container->hasService('foundHandler'));
     }
 
     /**
@@ -138,7 +138,7 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasPhpErrorHandler(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.phpErrorHandler'));
+        $this->assertTrue($container->hasService('phpErrorHandler'));
     }
 
     /**
@@ -146,7 +146,7 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasErrorHandler(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.errorHandler'));
+        $this->assertTrue($container->hasService('errorHandler'));
     }
 
     /**
@@ -154,7 +154,7 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasNotFoundHandler(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.notFoundHandler'));
+        $this->assertTrue($container->hasService('notFoundHandler'));
     }
 
     /**
@@ -162,7 +162,7 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasNotAllowedHandler(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.notAllowedHandler'));
+        $this->assertTrue($container->hasService('notAllowedHandler'));
     }
 
     /**
@@ -170,8 +170,8 @@ class SlimExtensionTest extends TestCase
      */
     public function testHasCallableResolver(Container $container)
     {
-        $this->assertTrue($container->hasService('slim.callableResolver'));
-        return $container->getService('slim.callableResolver');
+        $this->assertTrue($container->hasService('callableResolver'));
+        return $container->getService('callableResolver');
     }
 
     /**

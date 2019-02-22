@@ -8,29 +8,11 @@ use Nette\DI\MissingServiceException;
 
 class ContainerAdapter implements ContainerInterface
 {
-    private static $slimServices = [
-        'settings' => true,
-        'environment' => true,
-        'request' => true,
-        'response' => true,
-        'router' => true,
-        'foundHandler' => true,
-        'phpErrorHandler' => true,
-        'errorHandler' => true,
-        'notFoundHandler' => true,
-        'notAllowedHandler' => true,
-        'callableResolver' => true
-    ];
-
-    /** @var string */
-    private $slimPrefix;
-
     /** @var Container */
     private $container;
 
-    public function __construct($slimPrefix, Container $container)
+    public function __construct(Container $container)
     {
-        $this->slimPrefix = $slimPrefix;
         $this->container = $container;
     }
 
@@ -42,7 +24,7 @@ class ContainerAdapter implements ContainerInterface
         try {
             return class_exists($id) || interface_exists($id)
                 ? $this->container->getByType($id)
-                : $this->container->getService($this->prefixSlimService($id));
+                : $this->container->getService($id);
 
         } catch (MissingServiceException $e) {
             throw new ServiceNotFoundException($e->getMessage(), $e->getCode(), $e);
@@ -58,15 +40,6 @@ class ContainerAdapter implements ContainerInterface
     {
         return class_exists($id) || interface_exists($id)
             ? $this->container->getByType($id, false) !== null
-            : $this->container->hasService($this->prefixSlimService($id));
-    }
-
-    private function prefixSlimService($id)
-    {
-        if (isset(self::$slimServices[$id])) {
-            $id = "{$this->slimPrefix}.$id";
-        }
-
-        return $id;
+            : $this->container->hasService($id);
     }
 }

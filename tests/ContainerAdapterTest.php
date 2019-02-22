@@ -12,27 +12,6 @@ use Dzibma\Slim\Tests\Dummy\ServiceInterface;
 
 class ContainerAdapterTest extends TestCase
 {
-    private static $slimServices = [
-        'settings',
-        'environment',
-        'request',
-        'response',
-        'router',
-        'foundHandler',
-        'phpErrorHandler',
-        'errorHandler',
-        'notFoundHandler',
-        'notAllowedHandler',
-        'callableResolver'
-    ];
-
-    public function slimPrefixedServiceProvider()
-    {
-        foreach (self::$slimServices as $service) {
-            yield [$service];
-        }
-    }
-
     public function testContainerAdapter()
     {
         $compiler = new Compiler();
@@ -46,22 +25,9 @@ class ContainerAdapterTest extends TestCase
         eval($code);
         $container = new $class();
 
-        foreach (self::$slimServices as $id) {
-            $container->addService("slim.$id", new \stdClass());
-        }
-
-        $containerAdapter = new ContainerAdapter('slim', $container);
+        $containerAdapter = new ContainerAdapter($container);
         $this->assertInstanceOf(ContainerInterface::class, $containerAdapter);
         return $containerAdapter;
-    }
-
-    /**
-     * @depends testContainerAdapter
-     * @dataProvider slimPrefixedServiceProvider
-     */
-    public function testPrefixedSlimServices($id, ContainerInterface $container)
-    {
-        $this->assertTrue($container->has($id));
     }
 
     /**
