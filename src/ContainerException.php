@@ -1,6 +1,8 @@
 <?php
 
-namespace Dzibma\Slim;
+declare(strict_types=1);
+
+namespace Dzibma\SlimNette;
 
 use Psr\Container\ContainerExceptionInterface;
 

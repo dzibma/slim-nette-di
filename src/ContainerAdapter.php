@@ -1,6 +1,8 @@
 <?php
 
-namespace Dzibma\Slim;
+declare(strict_types=1);
+
+namespace Dzibma\SlimNette;
 
 use Psr\Container\ContainerInterface;
 use Nette\DI\Container;
@@ -22,13 +24,10 @@ class ContainerAdapter implements ContainerInterface
     public function get($id)
     {
         try {
-            return class_exists($id) || interface_exists($id)
-                ? $this->container->getByType($id)
-                : $this->container->getService($id);
-
+            return $this->container->getByType($id, false) ?? $this->container->getService($id);
         } catch (MissingServiceException $e) {
             throw new ServiceNotFoundException($e->getMessage(), $e->getCode(), $e);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             throw new ContainerException($e->getMessage(), $e->getCode(), $e);
         }
     }
@@ -38,8 +37,10 @@ class ContainerAdapter implements ContainerInterface
      */
     public function has($id)
     {
-        return class_exists($id) || interface_exists($id)
-            ? $this->container->getByType($id, false) !== null
-            : $this->container->hasService($id);
+        try {
+            return $this->container->hasService($id) || $this->container->getByType($id, false) !== null;
+        } catch (\Throwable $e) {
+            throw new ContainerException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 }
