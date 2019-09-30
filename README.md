@@ -7,7 +7,7 @@ Requires PHP >= 7.1
 
 ### Install SlimNette via composer
 ```bash
-composer req dzibma/slim-nette
+composer req dzibma/slim-nette dev-master
 ```
 
 ### Install PSR-7 implementation & ServerRequest factory
